@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import Container from "@/components/ui/Container";
 import ExternalLink from "@/components/ui/ExternalLink";
 import { navigation } from "@/data/navigation";
@@ -16,12 +18,30 @@ export default function Header() {
   return (
     <header className="absolute inset-x-0 top-0 z-50">
       <Container as="nav" className="flex items-center justify-between py-6">
-        <a
-          href="#"
-          className="font-serif text-lg tracking-[0.15em] text-[var(--color-ivory)]"
+        <Link
+          href="/"
+          aria-label="Father&rsquo;s House 홈으로 이동"
+          className="flex h-11 items-center md:h-14"
         >
-          FATHER&rsquo;S HOUSE
-        </a>
+          {/*
+            The supplied wordmark asset (fathers-house-wordmark-transparent)
+            bakes an unrelated "Worship Room" subtitle into its bottom ~26%.
+            The wrapper below is sized to the source's exact 1200x760 intrinsic
+            ratio, cropped (via `fill` + `object-cover` + `object-top`) to
+            only the top portion containing the roof mark and "FATHER'S
+            HOUSE" text, hiding the stray subtitle without altering the file.
+          */}
+          <span className="relative block aspect-[15/7] h-11 overflow-hidden md:h-14">
+            <Image
+              src="/images/logo/fathers-house-wordmark-transparent.png"
+              alt=""
+              fill
+              priority
+              sizes="(min-width: 768px) 120px, 96px"
+              className="object-cover object-top"
+            />
+          </span>
+        </Link>
 
         <div className="hidden items-center gap-8 md:flex">
           <ul className="flex items-center gap-6" aria-label="주요 메뉴">

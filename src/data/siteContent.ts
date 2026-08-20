@@ -1,4 +1,9 @@
-import type { CommunityImage, GatheringDetail, SocialLink } from "@/types";
+import type {
+  CommunityImage,
+  GatheringDetail,
+  HeroBackgroundImage,
+  SocialLink,
+} from "@/types";
 
 /**
  * Centralized, human-verified site copy and external links.
@@ -23,9 +28,25 @@ export const socialLinks: Record<"instagram" | "youtube", SocialLink> = {
   },
 };
 
+/**
+ * The two hero background photos, alternated by `HeroBackgroundSlideshow`.
+ * Both are purely atmospheric/decorative, so the slideshow marks them
+ * `aria-hidden` rather than repeatedly announcing background changes;
+ * `hero.ariaLabel` below carries the accessible description instead.
+ */
+export const heroImages: readonly HeroBackgroundImage[] = [
+  {
+    src: "/images/hero/fathers-house-hero.png",
+    focalPoint: "center center",
+  },
+  {
+    src: "/images/hero/fathers-house-hero2.png",
+    focalPoint: "75% center",
+  },
+] as const;
+
 export const hero = {
-  image: "/images/hero/fathers-house-hero.png",
-  imageAlt:
+  ariaLabel:
     "따뜻한 조명 아래 악기와 마이크를 둘러싸고 함께 찬양하는 파더스하우스 예배자들",
   headlineKo: "아버지의 임재가 머무는 곳",
   supportingLabelEn: "A dwelling place for His presence",

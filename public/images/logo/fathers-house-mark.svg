@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Father's House mark</title>
+  <desc id="desc">White roof-shaped mark on a black circular background.</desc>
+  <circle cx="256" cy="256" r="250" fill="#050505"/>
+  <path d="M118 310 L256 166 L394 310" fill="none" stroke="#fff" stroke-width="52" stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Father's House Worship Room</title>
+  <desc id="desc">White editorial Father's House wordmark with a roof mark and muted olive script subtitle.</desc>
+  <rect width="1200" height="760" rx="24" fill="#050505"/>
+  <g fill="none" stroke="#fff" stroke-width="30" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M505 185 L600 88 L695 185"/>
+  </g>
+  <g fill="#fff" text-anchor="middle" font-family="P052, 'Times New Roman', serif" font-weight="700">
+    <text x="600" y="360" font-size="174" letter-spacing="-7">FATHER’S</text>
+    <text x="600" y="530" font-size="184" letter-spacing="-8">HOUSE</text>
+  </g>
+  <g fill="none" stroke="#fff" stroke-width="5">
+    <path d="M130 385 H420"/><path d="M780 385 H1070"/>
+  </g>
+  <text x="600" y="650" text-anchor="middle" fill="#a8a43e" font-family="Z003, cursive" font-style="italic" font-size="105">Worship Room</text>
+</svg>

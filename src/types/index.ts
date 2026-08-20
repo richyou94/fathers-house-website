@@ -27,3 +27,8 @@ export interface CommunityImage {
   src: string;
   alt: string;
 }
+
+export interface HeroBackgroundImage {
+  src: string;
+  focalPoint: string;
+}
