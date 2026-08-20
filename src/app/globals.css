@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+:root {
+  --color-ivory: #f3f0e9;
+  --color-cream: #e9e2d5;
+  --color-ink: #1b1a17;
+  --color-charcoal: #24231f;
+  --color-muted: #746f66;
+  --color-line: #d5cfc4;
+  --color-wood: #8a5e3b;
+  --color-clay: #a5654f;
+  --color-amber: #c69b62;
+  --color-accent-red: #b84938;
+
+  --content-width: 1280px;
+  --reading-width: 720px;
+  --page-gutter: clamp(1.25rem, 4vw, 4rem);
+  --section-space: clamp(5rem, 11vw, 10rem);
+}
+
+@theme inline {
+  --color-ivory: var(--color-ivory);
+  --color-cream: var(--color-cream);
+  --color-ink: var(--color-ink);
+  --color-charcoal: var(--color-charcoal);
+  --color-muted: var(--color-muted);
+  --color-line: var(--color-line);
+  --color-wood: var(--color-wood);
+  --color-clay: var(--color-clay);
+  --color-amber: var(--color-amber);
+  --color-accent-red: var(--color-accent-red);
+
+  --font-serif: var(--font-cormorant);
+  --font-sans: var(--font-noto-sans-kr);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans), "Noto Sans KR", sans-serif;
+}
+
+/* Anchor targets: keep content clear of the fixed/transparent header. */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* Visible keyboard focus styles everywhere. */
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 3px;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
