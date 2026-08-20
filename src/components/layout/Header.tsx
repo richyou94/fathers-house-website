@@ -26,26 +26,20 @@ export default function Header({ navigation, content }: HeaderProps) {
         <Link
           href="/"
           aria-label={content.homeAriaLabel}
-          className="flex h-11 items-center md:h-14"
+          className="flex items-center"
         >
-          {/*
-            The supplied wordmark asset (fathers-house-wordmark-transparent)
-            bakes an unrelated "Worship Room" subtitle into its bottom ~26%.
-            The wrapper below is sized to the source's exact 1200x760 intrinsic
-            ratio, cropped (via `fill` + `object-cover` + `object-top`) to
-            only the top portion containing the roof mark and "FATHER'S
-            HOUSE" text, hiding the stray subtitle without altering the file.
-          */}
-          <span className="relative block aspect-[15/7] h-11 overflow-hidden md:h-14">
-            <Image
-              src="/images/logo/fathers-house-wordmark-transparent.png"
-              alt=""
-              fill
-              priority
-              sizes="(min-width: 768px) 120px, 96px"
-              className="object-cover object-top"
-            />
-          </span>
+          {/* Official full logo (clean transparent asset, no crop needed
+              unlike the earlier recreated wordmark). Decorative alt: the
+              parent Link already carries the accessible name. */}
+          <Image
+            src="/images/logo/fathers-house-logo-white.png"
+            alt=""
+            width={1400}
+            height={515}
+            priority
+            sizes="(min-width: 768px) 180px, 145px"
+            className="h-auto w-[145px] md:w-[180px]"
+          />
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">

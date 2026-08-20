@@ -135,9 +135,7 @@ export interface GatheringContent {
 }
 
 export interface FooterContent {
-  /** Alt text for the closing brand-signature logo (replaces the old visible phrase). */
-  logoAlt: string;
-  /** Accessible label for the logo's "back to top" link. */
+  /** Accessible label for the logo's "back to top" link (the image itself uses an empty/decorative alt). */
   backToTopAriaLabel: string;
   name: string;
   location: string;

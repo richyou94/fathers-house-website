@@ -17,25 +17,25 @@ export default function Footer({ content }: FooterProps) {
       <Container className="flex flex-col items-center gap-14 py-20 sm:py-24">
         {/*
           Brand signature: the closing logo replaces the old visible phrase.
-          Reuses the same transparent wordmark and crop technique as the
-          header (fathers-house-wordmark-transparent bakes an unrelated
-          "Worship Room" subtitle into its bottom ~26%; `fill` + object-cover
-          + object-top crops to just the roof mark + "FATHER'S HOUSE" text).
-          Links back to the top of the page - a subtle, static signature,
-          not another headline.
+          Official full logo asset - clean transparent PNG at its native
+          1400x515 ratio, so unlike the earlier recreated wordmark it needs
+          no crop. Links back to the top of the page - a subtle, static
+          signature, not another headline. Decorative alt: the link's
+          aria-label already carries the accessible name.
         */}
         <ScrollReveal>
           <a
             href="#"
             aria-label={content.backToTopAriaLabel}
-            className="relative block aspect-[15/7] w-[150px] overflow-hidden transition-opacity hover:opacity-80 sm:w-[180px] lg:w-[210px]"
+            className="inline-flex items-center transition-opacity hover:opacity-80"
           >
             <Image
-              src="/images/logo/fathers-house-wordmark-transparent.png"
-              alt={content.logoAlt}
-              fill
-              sizes="(min-width: 1024px) 210px, (min-width: 640px) 180px, 150px"
-              className="object-cover object-top"
+              src="/images/logo/fathers-house-logo-white.png"
+              alt=""
+              width={1400}
+              height={515}
+              sizes="(min-width: 1024px) 225px, (min-width: 640px) 200px, 175px"
+              className="h-auto w-[175px] sm:w-[200px] lg:w-[225px]"
             />
           </a>
         </ScrollReveal>

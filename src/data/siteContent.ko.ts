@@ -114,8 +114,7 @@ export const siteContentKo: SiteContent = {
   },
 
   footer: {
-    logoAlt: "파더스하우스 교회",
-    backToTopAriaLabel: "페이지 맨 위로 이동",
+    backToTopAriaLabel: "파더스하우스 홈페이지 상단으로 이동",
     name: "FATHER'S HOUSE",
     location: "SEOUL, KOREA",
     instagramAriaLabel: "Father's House 인스타그램 (새 탭에서 열림)",

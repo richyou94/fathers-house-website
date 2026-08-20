@@ -119,8 +119,7 @@ export const siteContentEn: SiteContent = {
   },
 
   footer: {
-    logoAlt: "Father\u2019s House Church",
-    backToTopAriaLabel: "Back to top",
+    backToTopAriaLabel: "Back to the top of the Father's House website",
     name: "FATHER'S HOUSE",
     location: "SEOUL, KOREA",
     instagramAriaLabel: "Father's House Instagram (opens in a new tab)",
