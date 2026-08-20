@@ -5,14 +5,19 @@ import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import ExternalLink from "@/components/ui/ExternalLink";
-import { navigation } from "@/data/navigation";
-import { socialLinks } from "@/data/siteContent";
+import { socialLinks } from "@/data/socialLinks";
+import type { HeaderContent, NavigationItem } from "@/types";
+
+interface HeaderProps {
+  navigation: NavigationItem[];
+  content: HeaderContent;
+}
 
 /**
  * Transparent header layered over the hero. Client component only because
  * the mobile menu toggle genuinely requires interaction state.
  */
-export default function Header() {
+export default function Header({ navigation, content }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -20,7 +25,7 @@ export default function Header() {
       <Container as="nav" className="flex items-center justify-between py-6">
         <Link
           href="/"
-          aria-label="Father&rsquo;s House 홈으로 이동"
+          aria-label={content.homeAriaLabel}
           className="flex h-11 items-center md:h-14"
         >
           {/*
@@ -44,7 +49,7 @@ export default function Header() {
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
-          <ul className="flex items-center gap-6" aria-label="주요 메뉴">
+          <ul className="flex items-center gap-6" aria-label={content.navAriaLabel}>
             {navigation.map((item) => (
               <li key={item.href}>
                 <a
@@ -58,11 +63,23 @@ export default function Header() {
           </ul>
           <ExternalLink
             href={socialLinks.instagram.href}
-            ariaLabel="Father's House Instagram (opens in a new tab)"
+            ariaLabel={content.instagramAriaLabel}
             className="font-sans text-sm tracking-wide text-[var(--color-ivory)] transition-opacity hover:opacity-70"
           >
             Instagram
           </ExternalLink>
+
+          {/* Language switch: visibly distinct from ordinary section links -
+              a thin-bordered control after an understated divider, not a
+              dropdown (only two languages exist). */}
+          <span aria-hidden="true" className="h-4 w-px bg-[var(--color-ivory)]/30" />
+          <Link
+            href={content.languageSwitch.href}
+            aria-label={content.languageSwitch.ariaLabel}
+            className="flex h-9 items-center justify-center border border-[var(--color-ivory)]/35 px-3 font-sans text-xs tracking-wide text-[var(--color-ivory)] transition-colors hover:border-[var(--color-ivory)]/70 hover:bg-white/5"
+          >
+            {content.languageSwitch.label}
+          </Link>
         </div>
 
         <button
@@ -70,11 +87,11 @@ export default function Header() {
           className="text-[var(--color-ivory)] md:hidden"
           aria-expanded={isMenuOpen}
           aria-controls="mobile-navigation"
-          aria-label={isMenuOpen ? "메뉴 닫기" : "메뉴 열기"}
+          aria-label={isMenuOpen ? content.menuCloseAriaLabel : content.menuOpenAriaLabel}
           onClick={() => setIsMenuOpen((open) => !open)}
         >
           <span className="font-sans text-sm tracking-wide">
-            {isMenuOpen ? "닫기" : "메뉴"}
+            {isMenuOpen ? content.menuCloseText : content.menuOpenText}
           </span>
         </button>
       </Container>
@@ -85,7 +102,7 @@ export default function Header() {
           className="bg-[var(--color-ink)]/95 md:hidden"
         >
           <Container className="flex flex-col gap-4 py-6">
-            <ul className="flex flex-col gap-4" aria-label="주요 메뉴">
+            <ul className="flex flex-col gap-4" aria-label={content.navAriaLabel}>
               {navigation.map((item) => (
                 <li key={item.href}>
                   <a
@@ -100,11 +117,24 @@ export default function Header() {
             </ul>
             <ExternalLink
               href={socialLinks.instagram.href}
-              ariaLabel="Father's House Instagram (opens in a new tab)"
+              ariaLabel={content.instagramAriaLabel}
               className="font-sans text-base text-[var(--color-ivory)]"
             >
               Instagram
             </ExternalLink>
+
+            {/* Language switch, separated by an understated divider, with a
+                44px-tall touch target. */}
+            <div className="flex flex-col gap-4 border-t border-white/10 pt-4">
+              <Link
+                href={content.languageSwitch.href}
+                aria-label={content.languageSwitch.ariaLabel}
+                onClick={() => setIsMenuOpen(false)}
+                className="flex h-11 w-fit items-center justify-center border border-[var(--color-ivory)]/35 px-4 font-sans text-sm tracking-wide text-[var(--color-ivory)] transition-colors hover:border-[var(--color-ivory)]/70 hover:bg-white/5"
+              >
+                {content.languageSwitch.label}
+              </Link>
+            </div>
           </Container>
         </div>
       )}

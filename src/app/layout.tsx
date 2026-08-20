@@ -21,6 +21,12 @@ export const metadata: Metadata = {
     description:
       "찬양과 말씀 가운데 하나님의 임재의 처소를 세워가는 예배 공동체, Father's House.",
   },
+  alternates: {
+    languages: {
+      ko: "/",
+      en: "/en",
+    },
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

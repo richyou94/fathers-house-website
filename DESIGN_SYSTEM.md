@@ -102,17 +102,24 @@ Never force Korean headings into the Latin serif display font.
 
 | Path | Section | Notes |
 | --- | --- | --- |
-| `/images/hero/fathers-house-hero.png` | Hero | Full-bleed background, `priority`, `fill` |
-| `/images/worship/worship-leader.png` | Worship Sessions (featured) | 순전한 예배 / PURE |
-| `/images/worship/worship-room.png` | Worship Sessions | 내 주 되신 주 / FOR WHO YOU ARE |
-| `/images/worship/worship-drums.png` | Worship Sessions + Community grid | 그 사랑이 내려와 / LOVE CAME DOWN, and community grid |
-| `/images/worship/worship-keyboard.png` | Community grid | |
-| `/images/worship/worship-guitar.png` | Community grid | |
-| `/images/community/community-02.png` | Community grid | |
+| `/images/hero/fathers-house-hero.png`, `/images/hero/fathers-house-hero2.png` | Hero | Alternating background slideshow, `priority` on the first, `fill` |
+| `/images/community/community-generations-worship.jpg` | Community (primary) | Intergenerational worship, wider visual emphasis |
+| `/images/community/community-kids-activity.jpg` | Community (supporting) | Children's creative activity |
 | `/images/gathering/fathers-house-gathering-space.png` | Gathering | |
 | `references/brand/fathers-house-brand-style-reference.png` | Internal only | Not a public site asset; do not reference from `public/` or components |
 
+Worship Sessions now links to official YouTube thumbnails (`i.ytimg.com`)
+rather than local photography - see `src/data/worshipSessions.ts`.
+
+`worship-leader.png`, `worship-room.png`, `worship-drums.png`,
+`worship-keyboard.png`, `worship-guitar.png`, and `community-02.png` under
+`public/images/worship/` and `public/images/community/` are currently
+**unused** by any section. They were superseded by the YouTube-thumbnail
+redesign and the new Community photography, but are kept on disk in case
+they're useful for a future section.
+
 ## 6. Layout principles
+
 
 - Server Components by default. Client components only where real
   interaction is required (currently: the mobile navigation toggle in

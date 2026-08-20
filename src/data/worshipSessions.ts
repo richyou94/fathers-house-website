@@ -1,35 +1,43 @@
 import type { WorshipSession } from "@/types";
-import { socialLinks } from "@/data/siteContent";
 
 /**
  * Initial worship session lineup.
  *
- * The exact YouTube URL for "그 사랑이 내려와 / LOVE CAME DOWN" is not yet
- * available in the project, so it temporarily links to the Father's House
- * YouTube channel instead of a specific video.
+ * Video IDs are extracted from the exact YouTube URLs already verified for
+ * this project - never invented. "그 사랑이 내려와 / LOVE CAME DOWN" has no
+ * confirmed specific video URL yet (only the channel), so it intentionally
+ * has no `videoId` and is excluded from the rendered video grid until one
+ * is supplied.
  */
 export const worshipSessions: WorshipSession[] = [
   {
     titleKo: "순전한 예배",
     titleEn: "PURE",
-    youtubeUrl: "https://www.youtube.com/watch?v=hGIt30fAbgo",
-    image: "/images/worship/worship-leader.png",
-    imageAlt: "마이크 앞에서 순전한 예배를 인도하는 워십 리더",
+    // From https://www.youtube.com/watch?v=hGIt30fAbgo
+    videoId: "hGIt30fAbgo",
     featured: true,
   },
   {
     titleKo: "내 주 되신 주",
     titleEn: "FOR WHO YOU ARE",
-    youtubeUrl: "https://www.youtube.com/watch?v=BFdNWqYWll0",
-    image: "/images/worship/worship-room.png",
-    imageAlt: "악기와 장비가 놓인 홈 스튜디오 형태의 예배 공간",
+    // From https://www.youtube.com/watch?v=BFdNWqYWll0
+    videoId: "BFdNWqYWll0",
   },
   {
     titleKo: "그 사랑이 내려와",
     titleEn: "LOVE CAME DOWN",
-    // TODO: replace with the exact video URL once it is confirmed.
-    youtubeUrl: socialLinks.youtube.href,
-    image: "/images/worship/worship-drums.png",
-    imageAlt: "찬양 가운데 드럼을 연주하는 예배팀원",
+    // TODO: no specific video URL confirmed yet - only the channel link
+    // exists. Add `videoId` here once the exact video URL is available.
   },
 ];
+
+export function getWorshipVideoUrl(videoId: string): string {
+  return `https://www.youtube.com/watch?v=${videoId}`;
+}
+
+export function getWorshipThumbnailUrl(
+  videoId: string,
+  quality: "maxresdefault" | "hqdefault" = "maxresdefault",
+): string {
+  return `https://i.ytimg.com/vi/${videoId}/${quality}.jpg`;
+}

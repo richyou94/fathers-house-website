@@ -11,6 +11,9 @@
   --color-clay: #a5654f;
   --color-amber: #c69b62;
   --color-accent-red: #b84938;
+  /* YouTube's own brand red - used only as a small, intentional accent on
+     the worship-video CTA/icon, never as a background. */
+  --color-youtube-red: #ff0000;
 
   --content-width: 1280px;
   --reading-width: 720px;
@@ -29,6 +32,7 @@
   --color-clay: var(--color-clay);
   --color-amber: var(--color-amber);
   --color-accent-red: var(--color-accent-red);
+  --color-youtube-red: var(--color-youtube-red);
 
   --font-serif: var(--font-cormorant);
   --font-sans: var(--font-noto-sans-kr);

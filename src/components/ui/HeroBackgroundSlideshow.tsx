@@ -8,10 +8,13 @@ import {
   type ReactNode,
 } from "react";
 import Image from "next/image";
-import type { HeroBackgroundImage } from "@/types";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+import type { HeroBackgroundImage, SlideshowLabels } from "@/types";
 
 interface HeroBackgroundSlideshowProps {
   images: readonly HeroBackgroundImage[];
+  /** Localized accessible labels for the previous/next/indicator controls. */
+  labels: SlideshowLabels;
   /** Time each image stays active before advancing, in milliseconds. */
   intervalMs?: number;
   sizes?: string;
@@ -27,21 +30,10 @@ const ROTATION_INTERVAL_MS = 4000;
  */
 const CROSSFADE_DURATION_MS = 1600;
 
-// Subscribing to browser-only state (media query, tab visibility) through
+// Subscribing to browser-only state (tab visibility) through
 // useSyncExternalStore keeps server/client snapshots consistent and avoids
-// setState-in-effect cascades.
-function subscribeToReducedMotion(onChange: () => void) {
-  const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-  mediaQuery.addEventListener("change", onChange);
-  return () => mediaQuery.removeEventListener("change", onChange);
-}
-function getReducedMotionSnapshot() {
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-function getReducedMotionServerSnapshot() {
-  return false;
-}
-
+// setState-in-effect cascades. (Reduced-motion detection is shared via the
+// `useReducedMotion` hook.)
 function subscribeToVisibility(onChange: () => void) {
   document.addEventListener("visibilitychange", onChange);
   return () => document.removeEventListener("visibilitychange", onChange);
@@ -61,6 +53,7 @@ function getVisibilityServerSnapshot() {
  */
 export default function HeroBackgroundSlideshow({
   images,
+  labels,
   intervalMs = ROTATION_INTERVAL_MS,
   sizes = "100vw",
   children,
@@ -72,11 +65,7 @@ export default function HeroBackgroundSlideshow({
     getVisibilitySnapshot,
     getVisibilityServerSnapshot,
   );
-  const prefersReducedMotion = useSyncExternalStore(
-    subscribeToReducedMotion,
-    getReducedMotionSnapshot,
-    getReducedMotionServerSnapshot,
-  );
+  const prefersReducedMotion = useReducedMotion();
 
   // Rotation only pauses for document visibility and reduced motion - never
   // for hover or focus, and never permanently because of a manual click.
@@ -161,7 +150,7 @@ export default function HeroBackgroundSlideshow({
           <button
             type="button"
             onClick={goToPrevious}
-            aria-label="이전 배경 이미지"
+            aria-label={labels.previous}
             className="flex h-11 w-11 items-center justify-center border border-[var(--color-ivory)]/35 bg-black/10 font-sans text-[var(--color-ivory)] transition-colors hover:border-[var(--color-ivory)]/70 hover:bg-black/20"
           >
             <span aria-hidden="true">←</span>
@@ -170,18 +159,14 @@ export default function HeroBackgroundSlideshow({
           <div
             className="flex items-center gap-1"
             role="group"
-            aria-label="배경 이미지 선택"
+            aria-label={labels.selectGroup}
           >
             {images.map((image, index) => (
               <button
                 key={image.src}
                 type="button"
                 onClick={() => goTo(index)}
-                aria-label={
-                  index === 0
-                    ? "첫 번째 배경 이미지 보기"
-                    : "두 번째 배경 이미지 보기"
-                }
+                aria-label={labels.goTo[index] ?? labels.selectGroup}
                 aria-current={index === activeIndex}
                 className="flex h-11 w-11 items-center justify-center"
               >
@@ -200,7 +185,7 @@ export default function HeroBackgroundSlideshow({
           <button
             type="button"
             onClick={goToNext}
-            aria-label="다음 배경 이미지"
+            aria-label={labels.next}
             className="flex h-11 w-11 items-center justify-center border border-[var(--color-ivory)]/35 bg-black/10 font-sans text-[var(--color-ivory)] transition-colors hover:border-[var(--color-ivory)]/70 hover:bg-black/20"
           >
             <span aria-hidden="true">→</span>
