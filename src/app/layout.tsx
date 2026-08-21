@@ -17,9 +17,21 @@ export const metadata: Metadata = {
   description:
     "찬양과 말씀 가운데 하나님의 임재의 처소를 세워가는 예배 공동체, Father's House.",
   openGraph: {
-    title: "Father's House | 아버지의 임재가 머무는 곳",
+    title: "Father’s House Church",
     description:
-      "찬양과 말씀 가운데 하나님의 임재의 처소를 세워가는 예배 공동체, Father's House.",
+      "찬양과 말씀 가운데 하나님의 임재의 처소를 세워가는 예배 공동체",
+    url: "https://fathers-house-website.vercel.app",
+    siteName: "Father’s House Church",
+    images: [
+      {
+        url: "/opengraph-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Father’s House Church",
+      },
+    ],
+    locale: "ko_KR",
+    type: "website",
   },
   alternates: {
     languages: {
