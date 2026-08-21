@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Father’s House Church",
     images: [
       {
-        url: "/opengraph-image.png",
+        url: "/opengraph-image.jpg",
         width: 1200,
         height: 630,
         alt: "Father’s House Church",
